@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Spell } from '../spell';
 import { SPELLS } from '../spell-list';
+import { SpellService } from '../spell.service';
 
 @Component({
   selector: 'app-spell-list',
@@ -9,18 +10,15 @@ import { SPELLS } from '../spell-list';
 })
 export class SpellListComponent implements OnInit {
 
-  // spells: Spell[];
+  spells: Spell[];
 
-  spells = SPELLS;
-
-
-  constructor() { }
+  constructor(private spellService: SpellService) { }
 
   ngOnInit() {
     this.getAllSpells();
   }
 
   getAllSpells(): void {  
-    
+    this.spells = this.spellService.getAllSpells();
   }
 }
