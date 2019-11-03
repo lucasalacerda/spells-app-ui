@@ -7,5 +7,4 @@ export const SPELLS: Spell[] = [
   { id: '3', title: 'spell 3', description: 'this is an awesome spell 2', level: 2, class: { className: 'bard' } as ClassChar, img: '' },
   { id: '4', title: 'spell 4', description: 'this is an awesome spell 2', level: 2, class: { className: 'bard' } as ClassChar, img: '' },
   { id: '5', title: 'spell 5', description: 'this is an awesome spell 2', level: 2, class: { className: 'bard' } as ClassChar, img: '' },
-
 ];

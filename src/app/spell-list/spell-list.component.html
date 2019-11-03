@@ -4,7 +4,8 @@
             <div class="card">
                 <img src="..." class="card-img-top" alt="...">
                 <div class="card-body">
-                    <p class="card-text">{{spell.title}}</p>
+                    <h5 class="card-title" (click)="openModal(spell.id)">{{spell.title}}</h5>
+                    <p class="card-text">{{spell.description}}</p>
                 </div>
             </div>
         </div>

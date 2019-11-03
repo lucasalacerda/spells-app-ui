@@ -15,5 +15,9 @@ export class SpellService {
     return SPELLS;
   }
 
+  getSpellById(id: string): Spell {
+    var prodIndex = SPELLS.findIndex((element) => element.id == id);
+    return SPELLS[prodIndex];  
+  }
 
 }
