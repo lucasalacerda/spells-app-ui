@@ -8,6 +8,7 @@ import { SpellListComponent } from './spell-list/spell-list.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SpellDetailComponent } from './spell-detail/spell-detail.component';
 import { ModalContentComponent } from './modal-content/modal-content.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ModalContentComponent } from './modal-content/modal-content.component';
     SpellListComponent,
     NavBarComponent,
     SpellDetailComponent,
-    ModalContentComponent
+    ModalContentComponent,
+    LoginComponent
   ],
   entryComponents: [ ModalContentComponent ],
   imports: [
