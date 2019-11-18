@@ -7,5 +7,4 @@ export class Spell {
     level: number;
     class: ClassChar;
     img: string;
-
 }
