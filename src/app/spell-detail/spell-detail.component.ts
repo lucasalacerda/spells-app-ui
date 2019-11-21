@@ -24,7 +24,8 @@ export class SpellDetailComponent implements OnInit {
   }
 
   getDetails(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.spell = this.spellService.getSpellById(id.toString());
+    const id = +this.route.snapshot.paramMap.get('_id');
+    console.log(id);
+    this.spellService.getSpellById(id.toString()).subscribe(spell => this.spell = spell);
   }
 }

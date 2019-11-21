@@ -35,12 +35,16 @@ export class LoginService {
     }
   }
 
-  doLogin(email: string, password: string): Observable<LoginModel> {
-    const login = new LoginModel(email, password);
+//   login(email:string, password:string ) {
+//     return this.http.post<LoginModel>('/api/login', {email, password})
+//         .do(res => this.setSession) 
+//         .shareReplay();
+// }
 
-    return this.http.post<LoginModel>(this.loginUrl, login, this.httpOptions)
+  doLogin(email: string, password: string): Observable<LoginModel> {
+    return this.http.post<LoginModel>(this.loginUrl, { email, password } as LoginModel, this.httpOptions)
     .pipe(
-      tap((login: LoginModel) => console.log(`welcome ${login.email}`)),
-      catchError(this.handleError<LoginModel>(`login ${login.email}`)))
+      tap((login: LoginModel) => console.log(`welcome ${email}`)),
+      catchError(this.handleError<LoginModel>(`failed ${email}`)))
   }
 }

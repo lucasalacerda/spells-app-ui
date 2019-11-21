@@ -22,19 +22,22 @@ export class SpellListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('aaaaaa asdasd ');
+    console.log(this.getAllSpells());
     this.getAllSpells();
   }
 
   getAllSpells(): void {
-    this.spells = this.spellService.getAllSpells();
+    this.spellService.getAllSpells()
+      .subscribe(spells => this.spells = spells);
   }
 
-  getSpell(id: number): void {  
-    var strId = id.toString()
-    this.spell = this.spellService.getSpellById(strId);
+  getSpell(id: string): void {  
+    this.spellService.getSpellById(id)
+      .subscribe(spell => this.spell = spell);
   }
 
-  openModal(id: number) {
+  openModal(id: string) {
     this.getSpell(id);
 
     const modalRef = this.modalService.open(ModalContentComponent);

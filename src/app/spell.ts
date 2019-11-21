@@ -1,7 +1,7 @@
 import { ClassChar } from './classChar';
 
 export class Spell {
-    id: string;
+    _id: string;
     title: string;
     description: string;
     level: number;

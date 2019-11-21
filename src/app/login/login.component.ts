@@ -29,11 +29,14 @@ export class LoginComponent implements OnInit {
 
   login() {
     const val = this.form.value;
-    this.loginService.doLogin(val.email, val.password)
-    .subscribe( () => {
-      console.log("User is logged in");
-      this.router.navigateByUrl('/');
-  });
+    if(val.email && val.password) {
+      this.loginService.doLogin(val.email, val.password)
+      .subscribe( () => {
+        console.log("User is logged in");
+        this.router.navigateByUrl('/');
+    });
+    }
+
   }
 
 }
