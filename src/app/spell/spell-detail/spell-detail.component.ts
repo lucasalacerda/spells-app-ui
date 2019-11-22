@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SpellService } from '../spell.service';
-import { ActivatedRoute } from '@angular/router';
+import { SpellService } from '../../spell.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
-import { Spell } from '../spell';
+import { Spell } from '../../models/spell';
+import { switchMap } from 'rxjs/operators';
+import { of, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-spell-detail',
@@ -24,8 +26,7 @@ export class SpellDetailComponent implements OnInit {
   }
 
   getDetails(): void {
-    const id = +this.route.snapshot.paramMap.get('_id');
-    console.log(id);
-    this.spellService.getSpellById(id.toString()).subscribe(spell => this.spell = spell);
+    const id = this.route.snapshot.paramMap.get('id');
+    this.spellService.getSpellById(id).subscribe(spell => this.spell = spell);
   }
 }

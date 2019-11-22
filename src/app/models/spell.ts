@@ -1,4 +1,4 @@
-import { ClassChar } from './classChar';
+import { ClassChar } from '../classChar';
 
 export class Spell {
     _id: string;

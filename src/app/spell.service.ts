@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Spell } from './spell';
+import { Spell } from './models/spell';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
@@ -46,7 +46,6 @@ export class SpellService {
 
   getSpellById(id: string): Observable<Spell> {
     const url = `${this.spellUrl}/${id}`;
-    console.log(url)
     return this.httpClient.get<Spell>(url).pipe(
       tap(_ => this.log('fetched spell')),
       catchError(this.handleError<Spell>(`getSpell ${id}`))
