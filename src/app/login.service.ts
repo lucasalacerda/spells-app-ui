@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpEvent } from '@angular/common/http';
 import { LoginModel } from "./models/loginModel";
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
+import * as moment from "moment";
+import { AuthModel } from './models/authModel';
 
 @Injectable({
   providedIn: 'root'
@@ -27,24 +29,46 @@ export class LoginService {
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
-      console.error(error); // log to console instead
+      console.log(error); // log to console instead
 
-      this.log(`${operation} failed: ${error.message}`);
+      this.log(`${operation} failed: ${error}`);
 
       return of(result as T);
     }
   }
 
-//   login(email:string, password:string ) {
-//     return this.http.post<LoginModel>('/api/login', {email, password})
-//         .do(res => this.setSession) 
-//         .shareReplay();
-// }
+  private setSession(authResult) {
+    const expiresAt = moment().add(authResult.expiresIn, 'second');
+    localStorage.setItem('id_token', authResult.data.token);
+    localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
+  }
 
-  doLogin(email: string, password: string): Observable<LoginModel> {
-    return this.http.post<LoginModel>(this.loginUrl, { email, password } as LoginModel, this.httpOptions)
-    .pipe(
-      tap((login: LoginModel) => console.log(`welcome ${email}`)),
-      catchError(this.handleError<LoginModel>(`failed ${email}`)))
+  doLogin(email: string, password: string): Observable<string> {
+    return this.http.post<string>(this.loginUrl, { email, password } as LoginModel, this.httpOptions)
+      .pipe(map(auth => {
+        this.setSession(auth);
+        return auth;
+      }),
+        catchError(this.handleError<string>('authentication failed'))
+      )
+  }
+
+  logout() {
+    localStorage.removeItem("id_token");
+    localStorage.removeItem("expires_at");
+  }
+
+  public isLoggedIn() {
+    return moment().isBefore(this.getExpiration());
+  }
+
+  isLoggedOut() {
+    return !this.isLoggedIn();
+  }
+
+  getExpiration() {
+    const expiration = localStorage.getItem("expires_at");
+    const expiresAt = JSON.parse(expiration);
+    return moment(expiresAt);
   }
 }

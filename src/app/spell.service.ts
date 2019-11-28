@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ErrorHandler } from '@angular/core';
 import { Spell } from './models/spell';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpEvent } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
@@ -24,9 +24,9 @@ export class SpellService {
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
-      console.error(error); // log to console instead
+      console.log(error); // log to console instead
 
-      this.log(`${operation} failed: ${error.message}`);
+      this.log(`${operation} failed: ${error}`);
 
       return of(result as T);
     }

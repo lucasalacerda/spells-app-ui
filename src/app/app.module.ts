@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -12,6 +12,9 @@ import { NavBarComponent } from './structure/nav-bar/nav-bar.component';
 import { SpellDetailComponent } from './spell/spell-detail/spell-detail.component';
 import { ModalContentComponent } from './modal-content/modal-content.component';
 import { LoginComponent } from './auth/login/login.component';
+import { LoaderComponent } from './structure/loader/loader.component';
+import { LoaderInterceptorService } from './loader-interceptor.service';
+import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import { LoginComponent } from './auth/login/login.component';
     NavBarComponent,
     SpellDetailComponent,
     ModalContentComponent,
-    LoginComponent
+    LoginComponent,
+    LoaderComponent,
+    UserDashboardComponent
   ],
   entryComponents: [ ModalContentComponent ],
   imports: [
@@ -31,7 +36,11 @@ import { LoginComponent } from './auth/login/login.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: LoaderInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
