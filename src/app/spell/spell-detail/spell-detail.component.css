@@ -1,0 +1,17 @@
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.spell-image {
+    display: flex;
+    justify-content: center;
+
+}
+
+.spell-image img {
+    border-radius: 360px;
+    min-width: 40%;
+    max-width: 50%;
+}

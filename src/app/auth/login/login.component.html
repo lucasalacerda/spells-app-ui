@@ -1,14 +1,17 @@
-<div class="container col-sm-6">
-    <form [formGroup]="form">
-        <div class="form-group">
-            <label for="email">Email address</label>
-            <input formControlName="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input formControlName="password" type="password" class="form-control" id="password" placeholder="Password">
-        </div>
-        <button (click)="login()" type="submit" class="btn btn-dark">Login</button>
-    </form>
-</div>
+<section class="section-page" id="login-section">
+    <div class="container col-sm-6">
+        <form [formGroup]="form">
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input formControlName="email" type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                    placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input formControlName="password" type="password" class="form-control" id="password" placeholder="Password">
+            </div>
+            <button (click)="login()" type="submit" class="btn btn-dark">Login</button>
+        </form>
+    </div>
+</section>

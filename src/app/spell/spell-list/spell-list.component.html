@@ -1,13 +1,17 @@
-<div class="container">
-    <div class="row">
-        <div *ngFor="let spell of spells" class="col-sm">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title" (click)="openModal(spell._id)">{{spell.title}}</h5>
-                    <p class="card-text">{{spell.description}}</p>
+<section class="section-page" id="list-spell-section">
+    <div class="container">
+        <div class="row">
+            <div *ngFor="let spell of spells" class="col-sm">
+                <div class="card">
+                    <div class="img-container">
+                        <img src="{{spell.img}}" class="card-img-top" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title" (click)="openModal(spell._id)">{{spell.title}}</h5>
+                        <p class="card-text">{{spell.description | truncate : 120 : "..."}}</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>

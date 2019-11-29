@@ -1,6 +1,15 @@
-<div *ngIf="spell" class="container">
-    <div >
-        <h5>{{spell.title}}</h5>
-        <p>{{spell.description}}</p>
+<section class="section-page">
+    <div *ngIf="spell" class="container">
+        <div class="spell-details">
+            <h5>{{spell.title}}</h5>
+            <div class="spell-info">
+                <p>{{spell.description}}</p>
+                <p>Spell level: {{spell.level}}</p>
+                <p>Class: {{spell.class.className}}</p>
+            </div>
+            <div class="spell-image">
+                <img src="{{spell.img}}" alt="imagem da magia">
+            </div>
+        </div>
     </div>
-</div>
+</section>
