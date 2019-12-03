@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Spell } from '../models/spell';
 
 @Component({
   selector: 'app-modal-content',
@@ -8,7 +9,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ModalContentComponent implements OnInit {
 
-  @Input() public spell;
+  @Input() public spell: Spell;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
   constructor(private activeModal: NgbActiveModal) { }

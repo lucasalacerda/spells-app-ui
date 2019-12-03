@@ -39,12 +39,11 @@ export class SpellListComponent implements OnInit, OnDestroy {
   }
 
   getSpell(id: string): Spell { 
-   return this.spells.find(spell => spell._id == id);
+   return this.spells.find(spell => spell.id === id);
   }
 
   openModal(id: string) {
     this.spell = this.getSpell(id);
-
     const modalRef = this.modalService.open(ModalContentComponent);
     modalRef.componentInstance.spell = this.spell;
     modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {

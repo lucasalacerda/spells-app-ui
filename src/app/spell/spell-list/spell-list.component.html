@@ -7,7 +7,7 @@
                         <img src="{{spell.img}}" class="card-img-top" alt="...">
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title" (click)="openModal(spell._id)">{{spell.title}}</h5>
+                        <h5 class="card-title" (click)="openModal(spell.id)">{{spell.title}}</h5>
                         <p class="card-text">{{spell.description | truncate : 120 : "..."}}</p>
                     </div>
                 </div>
