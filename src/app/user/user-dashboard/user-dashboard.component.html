@@ -1,19 +1,37 @@
-<section>
+<section id="user-dashboard-section">
     <div class="menu">
         <ul class="nav flex-column">
             <li class="nav-item">
+                <span *ngIf="user" class="avatar-dashboard">
+                    <img src="{{user.img}}" alt="avatar-img">
+                </span>
                 <a class="nav-link active" href="#">My Characters</a>
             </li>
         </ul>
         <div class="logout">
-            <button (click)="logout()" class="btn btn-outline-dark my-2 my-sm-0" type="submit">Logout</button>
+            <button *ngIf="loginService.isLoggedIn()" (click)="logout()" class="btn btn-outline-dark my-2 my-sm-0"
+                type="submit">Logout</button>
         </div>
     </div>
-        <div class="jumbotron">
-            <h1 class="display-4">Hello, world!</h1>
-            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <div id="dashboard-welcome" *ngIf="user" class="jumbotron">
+        <div id="welcome">
+            <h2 class="display-4">Welcome, {{user.name}}!</h2>
+            <p class="lead">This is your dashboard! You can create characters, add spells to them and a lot of other things.
+            </p>
             <hr class="my-4">
-            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-          </div>
+        </div>
+        <div id="characters-list">
+            <div class="characters-title">
+                <h4>Characters list</h4>
+            </div>
+            <div class="list">
+                    <p *ngIf="user && user.characters == ''">{{ showMessage() }}</p>
+                <ul *ngFor="let char of user.characters" class="list-group list-group-flush">
+                    <li class="list-group-item">{{char.name}}</li>
+                </ul>
+            </div>
+            <button class="btn btn-outline-dark my-2 my-sm-0" href="#" role="button">Show All</button>
+        </div>
+   </div>
+
 </section>

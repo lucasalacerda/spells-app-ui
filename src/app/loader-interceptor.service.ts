@@ -16,12 +16,7 @@ export class LoaderInterceptorService {
       next: HttpHandler
     ): Observable<HttpEvent<any>> {
 
-      const cloneReq = req.clone({
-        headers: req.headers.set('Authorization', 'Bearer token')
-      });
-
     this.showLoader();
-    const idToken = localStorage.getItem("id_token");
 
     return next.handle(req)
     .pipe(
@@ -33,7 +28,6 @@ export class LoaderInterceptorService {
         },
         (response: HttpEvent<any>) => {
           if(response instanceof HttpErrorResponse){
-            console.log(response.message)
             this.onEnd();
             return Observable.throw(response.message);
           }

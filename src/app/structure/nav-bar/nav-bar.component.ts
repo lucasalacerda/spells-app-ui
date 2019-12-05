@@ -9,16 +9,8 @@ import { LoginService } from 'src/app/login.service';
 export class NavBarComponent implements OnInit {
 
   @Input('title') titleName: string;
-  auth: LoginService;
 
-  isLogged() {
-    if(localStorage.getItem('id_token') != null) {
-      return true;
-    }
-    return false;
-  } 
-
-  constructor() { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() {
   }

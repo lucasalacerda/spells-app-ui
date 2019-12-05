@@ -13,7 +13,7 @@
         <a class="nav-link" routerLink="/about">About <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a *ngIf="isLogged()" class="nav-link" routerLink="/user-dashboard">User Dashboard<span class="sr-only">(current)</span></a>
+        <a *ngIf="loginService.isLoggedIn()" class="nav-link" routerLink="/user-dashboard">User Dashboard<span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <form class="form-inline">
@@ -21,7 +21,7 @@
       <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
     </form>
     <div class="navbar-nav">
-      <a *ngIf="!isLogged()" class="nav-link" routerLink="/login">Login <span class="sr-only">(current)</span></a>
+      <a *ngIf="!loginService.isLoggedIn()" class="nav-link" routerLink="/login">Login <span class="sr-only">(current)</span></a>
     </div>
   </div>
 </nav>

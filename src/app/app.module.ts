@@ -16,6 +16,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { LoaderComponent } from './structure/loader/loader.component';
 import { LoaderInterceptorService } from './loader-interceptor.service';
 import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.component';
+import { CreateCharacterComponent } from './character/create-character/create-character.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.com
     ModalContentComponent,
     LoginComponent,
     LoaderComponent,
-    UserDashboardComponent
+    UserDashboardComponent,
+    CreateCharacterComponent
   ],
   entryComponents: [ ModalContentComponent ],
   imports: [

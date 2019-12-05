@@ -15,8 +15,8 @@ export class SpellDetailComponent implements OnInit {
 
   constructor(
     private spellService: SpellService, 
-    private route: ActivatedRoute,
-    private location: Location) { }
+    private route: ActivatedRoute
+  ) { }
 
   
   @Input() spell: Spell;

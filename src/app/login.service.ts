@@ -5,14 +5,16 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import * as moment from "moment";
-import { AuthModel } from './models/authModel';
+import { UserToken } from './models/userToken';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  loginUrl = "http://spells-express.herokuapp.com/api/authenticate";
+  authUrl = "http://spells-express.herokuapp.com/api/authenticate";
+  verifyUrl = "http://spells-express.herokuapp.com/api/verify";
+
 
   constructor(
     private http: HttpClient,
@@ -21,6 +23,10 @@ export class LoginService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
+
+  tokenHeader = {
+    headers: new HttpHeaders({ 'x-auth-token': localStorage.getItem('id_token') })
+  }
 
   private log(message: string) {
     this.messageService.add(`HeroService: ${message}`);
@@ -44,13 +50,22 @@ export class LoginService {
   }
 
   doLogin(email: string, password: string): Observable<string> {
-    return this.http.post<string>(this.loginUrl, { email, password } as LoginModel, this.httpOptions)
+    return this.http.post<string>(this.authUrl, { email, password } as LoginModel, this.httpOptions)
       .pipe(map(auth => {
         this.setSession(auth);
         return auth;
       }),
         catchError(this.handleError<string>('authentication failed'))
-      )
+      );
+  }
+
+  verifyToken(): Observable<UserToken> {
+    return this.http.post<UserToken>(this.verifyUrl, {}, this.tokenHeader)
+      .pipe(map(user => {
+        return user;
+      }),
+        catchError(this.handleError<UserToken>('verify failed'))
+      );
   }
 
   logout() {
@@ -59,7 +74,8 @@ export class LoginService {
   }
 
   public isLoggedIn() {
-    return moment().isBefore(this.getExpiration());
+    if (localStorage.getItem('id_token')) return true
+    else false
   }
 
   isLoggedOut() {
