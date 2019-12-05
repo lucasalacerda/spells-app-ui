@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpEvent } from '@angular/common/http';
 import { LoginModel } from "./models/loginModel";
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, tap, flatMap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import * as moment from "moment";
 import { UserToken } from './models/userToken';
+import { UserService } from './services/user.service';
+import { User } from './models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +20,8 @@ export class LoginService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService) { }
+    private messageService: MessageService,
+    private userService: UserService) { }
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -59,12 +62,11 @@ export class LoginService {
       );
   }
 
-  verifyToken(): Observable<UserToken> {
+  verifyToken(): Observable<User> {
     return this.http.post<UserToken>(this.verifyUrl, {}, this.tokenHeader)
-      .pipe(map(user => {
-        return user;
-      }),
-        catchError(this.handleError<UserToken>('verify failed'))
+      .pipe(flatMap(user => this.userService.getUserById(user.id)
+      ),
+        catchError(this.handleError<User>('verify failed'))
       );
   }
 

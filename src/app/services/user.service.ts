@@ -17,8 +17,8 @@ export class UserService {
 
   constructor( 
     private http: HttpClient,
-    private messageService: MessageService,
-    private loginService: LoginService) { }
+    private messageService: MessageService
+    ) { }
 
   httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })

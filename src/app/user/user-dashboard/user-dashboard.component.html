@@ -25,9 +25,9 @@
                 <h4>Characters list</h4>
             </div>
             <div class="list">
-                    <p *ngIf="user && user.characters == ''">{{ showMessage() }}</p>
+                <p *ngIf="user && user.characters == []">{{ showMessage() }}</p>
                 <ul *ngFor="let char of user.characters" class="list-group list-group-flush">
-                    <li class="list-group-item">{{char.name}}</li>
+                    <li class="list-group-item"><a [routerLink]="['/char-detail', char._id]">{{char.nickname}}</a></li>
                 </ul>
             </div>
             <button class="btn btn-outline-dark my-2 my-sm-0" href="#" role="button">Show All</button>

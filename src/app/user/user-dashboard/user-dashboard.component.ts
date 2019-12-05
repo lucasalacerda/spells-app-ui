@@ -5,6 +5,7 @@ import { User } from 'src/app/models/user';
 import { UserToken } from 'src/app/models/userToken';
 import { UserService } from 'src/app/services/user.service';
 import { Subscription, of } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -18,7 +19,6 @@ export class UserDashboardComponent implements OnInit, OnDestroy {
   userToken: UserToken;
 
   constructor(
-    private userService: UserService,
     private loginService: LoginService, 
     private router: Router
   ) { }
@@ -32,10 +32,9 @@ export class UserDashboardComponent implements OnInit, OnDestroy {
   }
 
   getUserData() {
-    this.userSubs = this.loginService.verifyToken().subscribe(token => { 
-      token = new UserToken(token.id, token.iat, token.exp); 
-      this.userService.getUserById(token.id).subscribe(user => this.user = user)
-    });
+    this.userSubs = this.loginService.verifyToken().subscribe(user => { 
+      this.user = user;
+    })
   }
 
   showMessage(){
