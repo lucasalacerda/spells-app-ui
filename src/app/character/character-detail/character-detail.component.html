@@ -1,1 +1,24 @@
-<p>character-detail works!</p>
+<section class="section-page">
+    <div *ngIf="character" class="container">
+        <div class="char-details">
+            <div class="char-nickname">
+                <h3>{{character.nickname}}</h3>
+            </div>
+            <div class="char-title">
+                <h5>The {{character.class.className}}</h5>
+
+            </div>
+            <ul class="char-spelss" *ngFor="let spell of character.spells">
+                <div class="media">
+                    <img src="{{spell.img}}" class="mr-3" alt="...">
+                    <div class="media-body">
+                        <h5 class="mt-0">{{spell.title}}</h5>
+                        <p>{{spell.description}}</p>
+                        <p>{{spell.level}}</p>
+                        <p>{{spell.classChar}}</p>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </div>
+</section>

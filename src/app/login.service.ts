@@ -17,6 +17,7 @@ export class LoginService {
   authUrl = "http://spells-express.herokuapp.com/api/authenticate";
   verifyUrl = "http://spells-express.herokuapp.com/api/verify";
 
+  userToken: UserToken;
 
   constructor(
     private http: HttpClient,
@@ -64,7 +65,8 @@ export class LoginService {
 
   verifyToken(): Observable<User> {
     return this.http.post<UserToken>(this.verifyUrl, {}, this.tokenHeader)
-      .pipe(flatMap(user => this.userService.getUserById(user.id)
+      .pipe(tap(token => this.userToken = token),
+        flatMap(user => this.userService.getUserById(user.id)
       ),
         catchError(this.handleError<User>('verify failed'))
       );

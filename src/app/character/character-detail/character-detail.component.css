@@ -1,0 +1,13 @@
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.char-nickname {
+    margin-bottom: 1.5em;
+}
+
+.char-title {
+    margin-bottom: 1.5em;
+}

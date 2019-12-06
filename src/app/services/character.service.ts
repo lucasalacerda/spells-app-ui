@@ -22,14 +22,13 @@ export class CharacterService implements OnInit {
     private http: HttpClient
   ) { }
 
-  //TODO: FIX
-  // getCharacterById(id: string): Observable<Character> {
-  //   this.http.get<Character>(`this.characterUrl/${id}`, this.httpOptions)
-  //     .pipe(map(
-  //       char => {
-  //         return char;
-  //       }
-  //     )
-  //   );
-  // }
+  getCharacterById(id: string): Observable<Character> {
+    return this.http.get<Character>(`${this.characterUrl}/${id}`, this.httpOptions)
+      .pipe(map(
+        char => {
+          return char;
+        }
+      )
+    );
+  }
 }

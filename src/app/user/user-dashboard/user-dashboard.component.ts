@@ -13,6 +13,10 @@ import { flatMap } from 'rxjs/operators';
   styleUrls: ['./user-dashboard.component.css']
 })
 export class UserDashboardComponent implements OnInit, OnDestroy {
+  
+  ngOnDestroy() {
+    this.userSubs.unsubscribe;
+  }
 
   user: User
   userSubs: Subscription
@@ -25,10 +29,6 @@ export class UserDashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit() { 
     this.getUserData();
-  }
-
-  ngOnDestroy() {
-    this.userSubs.unsubscribe;
   }
 
   getUserData() {

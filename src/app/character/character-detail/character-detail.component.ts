@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
 import { CharacterService } from 'src/app/services/character.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-character-detail',
@@ -18,16 +19,19 @@ export class CharacterDetailComponent implements OnInit {
     private characterService: CharacterService
     ) { }
 
-  @Input() user: User;
   @Input() character: Character;
 
   ngOnInit() {
     this.getDetails();
   }
 
-  getDetails(): void {
+  getDetails() {
     const id = this.route.snapshot.paramMap.get('id');
-    // this.characterService.getCharacterById(id).subscribe(char => this.character = char);
+    this.characterService.getCharacterById(id)
+      .subscribe(char => { 
+        this.character = char;
+      }
+    );
   }
 }
 
