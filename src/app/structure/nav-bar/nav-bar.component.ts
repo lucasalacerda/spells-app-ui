@@ -20,14 +20,7 @@ export class NavBarComponent implements OnInit {
   currentUrl: string;
 
   ngOnInit() {
-    this.showSearch();
-  }
-
-  showSearch() {
-    if(this.route.url === "/spells-list") return true
-    return false
     
-  }
-  
+  } 
 
 }

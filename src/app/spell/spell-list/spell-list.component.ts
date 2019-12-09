@@ -4,7 +4,7 @@ import { SpellService } from '../../spell.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalContentComponent } from '../../modal-content/modal-content.component';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-spell-list',
@@ -16,6 +16,7 @@ export class SpellListComponent implements OnInit, OnDestroy {
   spellsSub: Subscription;
   spells: Spell[];
   spell: Spell;
+  private searchTerms = new Subject<string>();
 
   constructor(
     private spellService: SpellService,
@@ -25,6 +26,10 @@ export class SpellListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getAllSpells();
+  }
+
+  search(term: string): void {
+    this.searchTerms.next(term);
   }
 
   ngOnDestroy(): void {

@@ -18,6 +18,8 @@ import { LoaderInterceptorService } from './loader-interceptor.service';
 import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.component';
 import { CreateCharacterComponent } from './character/create-character/create-character.component';
 import { CharacterDetailComponent } from './character/character-detail/character-detail.component';
+import { SearchSpellComponent } from './spell/search-spell/search-spell.component';
+import { HomeComponent } from './structure/home/home.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { CharacterDetailComponent } from './character/character-detail/character
     LoaderComponent,
     UserDashboardComponent,
     CreateCharacterComponent,
-    CharacterDetailComponent
+    CharacterDetailComponent,
+    SearchSpellComponent,
+    HomeComponent
   ],
   entryComponents: [ ModalContentComponent ],
   imports: [
