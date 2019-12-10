@@ -1,1 +1,51 @@
-<p>create-character works!</p>
+<section class="section-page" id="create-character-section">
+    <div class="container col-sm-6">
+        <h4>Create new Character</h4>
+        <form [formGroup]="form">
+            <div class="form-group">
+                <label for="nickname">Character's Name</label>
+                <input formControlName="nickname" type="text" class="form-control" id="nickname"
+                    aria-describedby="nickname" placeholder="Character's name">
+            </div>
+            <div class="form-group">
+                <label for="background">Background</label>
+                <input formControlName="background" type="text" class="form-control" id="background"
+                    placeholder="Background">
+            </div>
+            <div class="form-group">
+                <label for="img">Character's picture</label>
+                <input formControlName="img" type="text" class="form-control" id="img"
+                    placeholder="Character's picture">
+            </div>
+
+            <div class="form-group">
+                <label for="classChar">Select Character's Class</label>
+                <select formControlName="classChar" class="custom-select mr-sm-2" id="classChar">
+                    <option value="">Choose...</option>
+                    <option  *ngFor="let class of classList" value="{{class._id}}">{{class.className}}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="spells">Select Spell</label>
+                <select formControlName="spells" multiple class="custom-select mr-sm-2" id="spells">
+                    <option *ngFor="let spell of spells" value="{{spell._id}}">{{spell.title}}</option>
+                </select>
+            </div>
+            <div>
+                <button (click)="create()" type="submit" class="btn btn-dark">Create</button>
+                <button routerLink="/user-dashboard" type="submit" class="btn btn-dark">Back</button>
+            </div>
+            <div *ngIf="success">
+                <div class="alert alert-success" role="alert">
+                    Character created successfully!
+                </div>
+            </div>
+            <div *ngIf="errorMessage">
+                <div class="alert alert-danger" role="alert">
+                    {{errorMessage}}
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

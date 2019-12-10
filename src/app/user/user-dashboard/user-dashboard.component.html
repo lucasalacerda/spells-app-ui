@@ -15,7 +15,7 @@
     </div>
     <div id="dashboard-welcome" *ngIf="user" class="jumbotron">
         <div id="welcome">
-            <h2 class="display-4">Welcome, {{user.name}}!</h2>
+            <h4 class="display-4">Welcome, {{user.name}}.</h4>
             <p class="lead">This is your dashboard! You can create characters, add spells to them and a lot of other things.
             </p>
             <hr class="my-4">
@@ -30,8 +30,10 @@
                     <li class="list-group-item"><a [routerLink]="['/character-detail', char._id]">{{char.nickname}}</a></li>
                 </ul>
             </div>
-            <button class="btn btn-outline-dark my-2 my-sm-0" href="#" role="button">Show All</button>
+            <div id="char-config">
+                <button class="btn btn-outline-dark my-2" role="button">Show All</button>
+                <button class="btn btn-outline-dark my-2" routerLink="/create-character" href="#" role="button">Create Character</button>
+            </div>
         </div>
    </div>
-
 </section>

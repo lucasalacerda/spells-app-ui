@@ -7,6 +7,7 @@ import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.com
 import { AuthGuardService } from './services/auth-guard.service';
 import { CharacterDetailComponent } from './character/character-detail/character-detail.component';
 import { HomeComponent } from './structure/home/home.component';
+import { CreateCharacterComponent } from './character/create-character/create-character.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'user-dashboard', component: UserDashboardComponent, canActivate: [AuthGuardService] },
   { path: 'character-detail/:id', component: CharacterDetailComponent, canActivate: [AuthGuardService] },
+  { path: 'create-character', component: CreateCharacterComponent, canActivate: [AuthGuardService] },
   { path: 'login', component: LoginComponent },
 ];
 
