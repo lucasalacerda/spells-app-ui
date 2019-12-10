@@ -1,8 +1,8 @@
 <section class="section-page">
     <div class="container">
-        <form id="search-form" class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+        <form [formGroup]="form" id="search-form" class="form-inline">
+            <input  formControlName="spellTitle" (input)="eventEmmiter($event.target.value)" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button (click)="eventEmmiter()" class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
 </section>

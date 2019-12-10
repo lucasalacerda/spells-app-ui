@@ -1,2 +1,2 @@
-<app-search-spell></app-search-spell>
-<app-spell-list></app-spell-list>
+<app-search-spell (spellNameFiltered)="spellNameEmitter($event)"></app-search-spell>
+<app-spell-list [spellTitle]="valueTitleFiltered"></app-spell-list>

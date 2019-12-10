@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges, Input } from '@angular/core';
 import { Spell } from '../../models/spell';
 import { SpellService } from '../../spell.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -11,11 +11,12 @@ import { Subscription, Subject } from 'rxjs';
   templateUrl: './spell-list.component.html',
   styleUrls: ['./spell-list.component.css']
 })
-export class SpellListComponent implements OnInit, OnDestroy {
+export class SpellListComponent implements OnInit, OnDestroy, OnChanges {
 
   spellsSub: Subscription;
   spells: Spell[];
   spell: Spell;
+  @Input() spellTitle: string;
   private searchTerms = new Subject<string>();
 
   constructor(
@@ -30,6 +31,11 @@ export class SpellListComponent implements OnInit, OnDestroy {
 
   search(term: string): void {
     this.searchTerms.next(term);
+  }
+
+  ngOnChanges(){
+    console.log("Atualizando lista");
+    // this.getAllSpells();
   }
 
   ngOnDestroy(): void {

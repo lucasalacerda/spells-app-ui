@@ -1,10 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Pipe } from '@angular/core';
 import { SpellService } from '../../spell.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
 import { Spell } from '../../models/spell';
 import { switchMap } from 'rxjs/operators';
-import { of, Observable } from 'rxjs';
+import { of, Observable, pipe } from 'rxjs';
 
 @Component({
   selector: 'app-spell-detail',
@@ -23,6 +23,10 @@ export class SpellDetailComponent implements OnInit {
 
   ngOnInit() {
     this.getDetails();
+  }
+  
+  searchSpells(title: string) {
+    console.log(title);
   }
 
   getDetails(): void {

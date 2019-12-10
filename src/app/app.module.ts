@@ -20,6 +20,7 @@ import { CreateCharacterComponent } from './character/create-character/create-ch
 import { CharacterDetailComponent } from './character/character-detail/character-detail.component';
 import { SearchSpellComponent } from './spell/search-spell/search-spell.component';
 import { HomeComponent } from './structure/home/home.component';
+import { FilterSpellPipe } from './pipes/filter-spell.pipe';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { HomeComponent } from './structure/home/home.component';
     CreateCharacterComponent,
     CharacterDetailComponent,
     SearchSpellComponent,
-    HomeComponent
+    HomeComponent,
+    FilterSpellPipe
   ],
   entryComponents: [ ModalContentComponent ],
   imports: [

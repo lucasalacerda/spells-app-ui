@@ -1,7 +1,7 @@
 <section class="section-page" id="list-spell-section">
-    <div class="container">
+    <div *ngIf="spells" class="container">
         <div class="row">
-            <div *ngFor="let spell of spells" class="col-sm">
+            <div *ngFor="let spell of (spells|filterSpell:spellTitle)" class="col-sm">
                 <div class="card">
                     <div class="img-container">
                         <img src="{{spell.img}}" class="card-img-top" alt="...">
